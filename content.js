@@ -9,7 +9,7 @@ function addButtonToPullRequest() {
   if (tabs) {
     console.warn("if tab true");
     var button = document.createElement("button");
-    button.innerText = "✨";
+    button.innerText = "✨ Better PR";
     button.classList.add("btn", "btn-sm", "my-custom-button");
 
     button.addEventListener("click", function () {
