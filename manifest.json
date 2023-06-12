@@ -3,30 +3,22 @@
   "name": "Better-pr",
   "version": "1.0",
   "description": "Create a Pull-Request (merge-request in GitLab) description based on the git diff and markdown files and other repo metadata.",
-  "permissions": [
-    "tabs",
-    "activeTab",
-    "scripting"
-  ],
+  "permissions": ["tabs", "activeTab", "scripting"],
   "action": {
     "default_popup": "popup.html"
   },
   "icons": {
-    "16": "team-logo.png",
-    "48": "team-logo.png",
-    "128": "team-logo.png"
+    "16": "team-logo-trans.png",
+    "48": "team-logo-trans.png",
+    "128": "team-logo-trans.png"
   },
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://github.com/*/pull/*"
-      ],
-      "js": [
-        "content.js"
-      ]
+      "matches": ["https://github.com/*/pull/*"],
+      "js": ["content.js"]
     }
   ]
 }
