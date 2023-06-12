@@ -18,8 +18,7 @@ Here are some of the things you can do:
 * Zoom in and out by moving your head closer to or further away from the scene.
 * Rotate the scene by turning your head.
 * Click on objects in the scene to interact with them.
-
-## Enjoy!`;
+`;
 
 async function createDescription() {
   const apiUrl = "https://better-pr-be.deno.dev/";
