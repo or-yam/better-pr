@@ -6,10 +6,10 @@ addButtonToPullRequest();
 function addButtonToPullRequest() {
   var tabs = document.querySelector('.gh-header-actions');
   if (tabs) {
-    console.warn('if tab true');
-    var button = document.createElement('button');
-    button.innerText = '✨';
-    button.classList.add('btn', 'btn-sm', 'my-custom-button');
+    console.warn("if tab true");
+    var button = document.createElement("button");
+    button.innerText = "✨ Better PR";
+    button.classList.add("btn", "btn-sm", "my-custom-button");
 
     button.addEventListener('click', function () {
       // Button click logic
