@@ -5,7 +5,7 @@ addButtonToPullRequest();
 // Function to add the button inside the pull request tabs
 function addButtonToPullRequest() {
   console.warn("addButtonToPullRequest 🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢");
-  var tabs = document.querySelector(".js-repo-nav");
+  var tabs = document.querySelector('.gh-header-actions');
   if (tabs) {
     console.warn("if tab true");
     var button = document.createElement("button");
