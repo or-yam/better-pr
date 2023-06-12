@@ -1,33 +1,15 @@
-// Execute code when the content script is injected into a page
-console.log('Content script loaded.');
-
-//GET author,repo,pr number from URL
-function getRepoInfoFromUrl(url) {
-  const pathname = new URL(url).pathname;
-  const parts = pathname.split('/');
-  const author = parts[1];
-  const repo = parts[2];
-  const prNumber = parts[4];
-  return {
-    author,
-    repo,
-    prNumber,
-  };
-}
-
-//fetch from API
-async function createDescription(author, repo, prNumber) {
+async function createDescription() {
   const apiUrl = 'https://better-pr-be.deno.dev/';
   try {
     const response = await fetch(apiUrl, {
-      method: 'GET',
+      method: 'POST',
+      // mode: 'no-cors',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: { author, repo, prNumber },
+      body: JSON.stringify({ prUrl: window.location.href })
     });
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error('API Request Failed:', error);
@@ -53,10 +35,8 @@ const i = setInterval(function () {
     button.classList.add('btn', 'btn-sm', 'my-custom-button');
 
     button.addEventListener('click', async function () {
-      // Button click logic
-      const { author, repo, prNumber } = getRepoInfoFromUrl(window.location.href);
-      const description = await createDescription({ author, repo, prNumber });
-      writeToTextArea();
+      const description = await createDescription();
+      writeToTextArea(description);
     });
 
     cancelBTN.parentElement.prepend(button);
