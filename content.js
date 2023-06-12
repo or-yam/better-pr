@@ -12,8 +12,7 @@ function addButtonToPullRequest() {
     button.classList.add("btn", "btn-sm", "my-custom-button");
 
     button.addEventListener('click', function () {
-      // Button click logic
-      alert('Button clicked!');
+      
       writeToTextArea();
     });
 
@@ -35,6 +34,7 @@ document.addEventListener('pjax:end', function () {
 });
 
 function writeToTextArea() {
-  var textArea = document.querySelector('#new_comment_field');
+  var textArea = document.querySelector('[name="pull_request[body]"]')
+  
   textArea.value = 'test test test';
 }
