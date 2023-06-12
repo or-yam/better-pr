@@ -1,14 +1,14 @@
 // Execute code when the content script is injected into a page
-console.log("Content script loaded.");
+console.log('Content script loaded.');
+addButtonToPullRequest();
 
 // Function to add the button inside the pull request tabs
 function addButtonToPullRequest() {
-  console.warn("addButtonToPullRequest 🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢");
-  var tabs = document.querySelector(".js-repo-nav");
+  var tabs = document.querySelector('.gh-header-actions');
   if (tabs) {
     console.warn("if tab true");
     var button = document.createElement("button");
-    button.innerText = "✨";
+    button.innerText = "✨ Better PR";
     button.classList.add("btn", "btn-sm", "my-custom-button");
 
     button.addEventListener("click", async function () {
@@ -18,9 +18,10 @@ function addButtonToPullRequest() {
         window.location.href
       );
       const description = await createDescription({ author, repo, prNumber });
+      writeToTextArea();
     });
 
-    var existingTab = tabs.querySelector(".my-custom-button");
+    var existingTab = tabs.querySelector('.my-custom-button');
     if (!existingTab) {
       tabs.appendChild(button);
     }
@@ -61,24 +62,17 @@ async function createDescription(author, repo, prNumber) {
 }
 
 // Check if the page is fully loaded before adding the button
-document.addEventListener("DOMContentLoaded", function () {
-  console.warn("page is fully loaded 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴");
+document.addEventListener('DOMContentLoaded', function () {
   addButtonToPullRequest();
 });
 
 // Listen for changes to the page (e.g., when switching between pull request tabs)
-document.addEventListener("pjax:end", function () {
-  console.warn("changes to the page 🔵🔵🔵🔵🔵🔵🔵🔵🔵");
+document.addEventListener('pjax:end', function () {
   addButtonToPullRequest();
 });
 
-function addButtonToPage() {
-  var button = document.createElement("button");
-  button.innerText = "✨";
-  button.addEventListener("click", function () {
-    // Button click logic
-    alert("Button clicked!");
-  });
-
-  document.body.appendChild(button);
+function writeToTextArea() {
+  var textArea = document.querySelector('[name="pull_request[body]"]')
+  
+  textArea.value = 'test test test';
 }
