@@ -6,13 +6,12 @@ addButtonToPullRequest();
 function addButtonToPullRequest() {
   var tabs = document.querySelector('.gh-header-actions');
   if (tabs) {
-    console.warn("if tab true");
-    var button = document.createElement("button");
-    button.innerText = "✨ Better PR";
-    button.classList.add("btn", "btn-sm", "my-custom-button");
+    console.warn('if tab true');
+    var button = document.createElement('button');
+    button.innerText = '✨ Better PR';
+    button.classList.add('btn', 'btn-sm', 'my-custom-button');
 
     button.addEventListener('click', function () {
-      
       writeToTextArea();
     });
 
@@ -34,7 +33,12 @@ document.addEventListener('pjax:end', function () {
 });
 
 function writeToTextArea() {
-  var textArea = document.querySelector('[name="pull_request[body]"]')
-  
-  textArea.value = 'test test test';
+  var textArea = document.querySelector('[name="pull_request[body]"]');
+  var dropdownButton = document.querySelector('.timeline-comment-action');
+  dropdownButton.click();
+  setTimeout(() => {
+    var editButton = document.querySelector('.js-comment-edit-button');
+    editButton.click();
+    textArea.value = 'test test test';
+  }, '1000');
 }
